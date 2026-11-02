@@ -13,13 +13,21 @@ const stats = [
 export function HeroSection() {
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const navOffset = 70;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-[92vh] flex items-center overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #0A1628 0%, #0f2252 40%, #0e4f6b 100%)",
       }}
@@ -31,49 +39,43 @@ export function HeroSection() {
           className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37,99,235,0.15) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
+            backgroundSize: "32px 32px",
           }}
         />
         {/* Gradient orbs */}
         <div
-          className="absolute top-1/4 -right-32 w-96 h-96 rounded-full blur-3xl"
+          className="absolute top-1/4 -right-24 sm:-right-32 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl"
           style={{ background: "rgba(6,182,212,0.12)" }}
         />
         <div
-          className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full blur-3xl"
+          className="absolute bottom-1/4 -left-24 sm:-left-32 w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-3xl"
           style={{ background: "rgba(37,99,235,0.15)" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl"
-          style={{ background: "rgba(14,79,107,0.2)" }}
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-14 sm:pb-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Text Content */}
           <div className="text-center lg:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-6 sm:mb-8"
               style={{
                 background: "rgba(37,99,235,0.15)",
                 border: "1px solid rgba(37,99,235,0.3)",
               }}
             >
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span style={{ fontSize: "13px", fontWeight: 500, color: "#67e8f9" }}>
+              <span className="text-xs sm:text-sm font-medium text-cyan-200">
                 Now Accepting Interns — Batch 2026
               </span>
             </div>
 
             {/* Headline */}
             <h1
-              className="text-white mb-6"
+              className="text-white mb-5 sm:mb-6 leading-tight tracking-tight font-extrabold"
               style={{
-                fontSize: "clamp(36px, 5vw, 62px)",
-                fontWeight: 800,
-                lineHeight: 1.1,
-                letterSpacing: "-1.5px",
+                fontSize: "clamp(28px, 5.5vw, 56px)",
+                letterSpacing: "-0.8px",
               }}
             >
               Build Your{" "}
@@ -91,57 +93,50 @@ export function HeroSection() {
 
             {/* Subtitle */}
             <p
-              className="mb-8 max-w-lg mx-auto lg:mx-0"
+              className="mb-8 max-w-lg mx-auto lg:mx-0 text-slate-300 leading-relaxed"
               style={{
-                fontSize: "clamp(15px, 2vw, 18px)",
-                fontWeight: 400,
-                lineHeight: 1.7,
-                color: "#94a3b8",
+                fontSize: "clamp(14px, 2vw, 17px)",
               }}
             >
-              Join the <strong style={{ color: "#e2e8f0", fontWeight: 600 }}>Primeor Solutions Internship Program</strong> and
+              Join the <strong className="text-white font-semibold">Primeor Solutions Internship Program</strong> and
               gain real-world web development experience. Work on live projects, build your portfolio,
               and launch your tech career with expert mentorship.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center lg:justify-start mb-10 sm:mb-12">
               <button
                 onClick={() => handleScroll("#programs")}
-                className="flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer text-sm sm:text-base font-semibold"
                 style={{
                   background: "linear-gradient(135deg, #2563EB, #06B6D4)",
-                  fontSize: "15px",
-                  fontWeight: 600,
                   boxShadow: "0 8px 30px rgba(37,99,235,0.4)",
                 }}
               >
-                Explore Program
+                <span>Explore Program</span>
                 <ArrowRight size={18} />
               </button>
               <button
                 onClick={() => handleScroll("#interactive")}
-                className="flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-white transition-all duration-300 hover:bg-white/10 cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-white transition-all duration-300 hover:bg-white/10 cursor-pointer text-sm sm:text-base font-medium"
                 style={{
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.15)",
                   backdropFilter: "blur(8px)",
-                  fontSize: "15px",
-                  fontWeight: 500,
                 }}
               >
                 <Play size={16} className="text-cyan-400" />
-                Try Live Demos
+                <span>Try Live Demos</span>
               </button>
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-white/10">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
+                <div key={stat.label} className="text-center lg:text-left p-2 rounded-lg">
                   <div
-                    className="text-white font-bold"
-                    style={{ fontSize: "28px", letterSpacing: "-0.5px" }}
+                    className="text-white font-bold text-2xl sm:text-3xl"
+                    style={{ letterSpacing: "-0.5px" }}
                   >
                     <span
                       style={{
@@ -153,7 +148,7 @@ export function HeroSection() {
                       {stat.value}
                     </span>
                   </div>
-                  <div style={{ fontSize: "13px", color: "#64748b", fontWeight: 500 }}>
+                  <div className="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">
                     {stat.label}
                   </div>
                 </div>
@@ -162,10 +157,10 @@ export function HeroSection() {
           </div>
 
           {/* Right: Code/Image showcase */}
-          <div className="relative">
+          <div className="relative mt-2 lg:mt-0">
             {/* Outer glow */}
             <div
-              className="absolute -inset-4 rounded-3xl blur-2xl opacity-40"
+              className="absolute -inset-2 sm:-inset-4 rounded-3xl blur-2xl opacity-30"
               style={{ background: "linear-gradient(135deg, #2563EB, #06B6D4)" }}
             />
 
@@ -173,29 +168,29 @@ export function HeroSection() {
             <div
               className="relative rounded-2xl overflow-hidden shadow-2xl border"
               style={{
-                background: "rgba(10, 22, 40, 0.8)",
+                background: "rgba(10, 22, 40, 0.85)",
                 borderColor: "rgba(37, 99, 235, 0.3)",
                 backdropFilter: "blur(16px)",
               }}
             >
               {/* Window header */}
               <div
-                className="flex items-center justify-between px-4 py-3 border-b"
+                className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 border-b"
                 style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-red-500/80" />
+                  <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-green-500/80" />
                 </div>
-                <div style={{ fontSize: "12px", color: "#64748b", fontFamily: "monospace" }}>
+                <div className="text-[11px] sm:text-xs text-slate-400 font-mono">
                   PrimeorInternship.jsx
                 </div>
-                <div className="w-12" />
+                <div className="w-8 sm:w-12" />
               </div>
 
               {/* Image with overlay */}
-              <div className="relative h-64 sm:h-80 overflow-hidden">
+              <div className="relative h-56 xs:h-64 sm:h-76 md:h-80 overflow-hidden">
                 <ImageWithFallback
                   src={heroImage}
                   alt="Modern developer workspace with clean coding setup"
@@ -210,34 +205,34 @@ export function HeroSection() {
 
                 {/* Floating pill badge */}
                 <div
-                  className="absolute bottom-4 left-4 right-4 p-4 rounded-xl flex items-center justify-between"
+                  className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 p-2.5 sm:p-3.5 rounded-xl flex items-center justify-between gap-2"
                   style={{
-                    background: "rgba(10, 22, 40, 0.9)",
+                    background: "rgba(10, 22, 40, 0.92)",
                     border: "1px solid rgba(37, 99, 235, 0.4)",
                     backdropFilter: "blur(12px)",
                   }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <div>
-                      <div className="text-white text-xs font-semibold">Web Development Track</div>
-                      <div className="text-slate-400 text-[11px]">Bhopal, MP &bull; Online / Hybrid</div>
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                    <div className="min-w-0">
+                      <div className="text-white text-[11px] sm:text-xs font-semibold truncate">Web Development Track</div>
+                      <div className="text-slate-400 text-[10px] sm:text-[11px] truncate">Bhopal, MP &bull; Online / Hybrid</div>
                     </div>
                   </div>
                   <button
                     onClick={() => handleScroll("#contact")}
-                    className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition-colors cursor-pointer"
+                    className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition-colors cursor-pointer flex-shrink-0"
                   >
-                    Join Now
+                    Join
                   </button>
                 </div>
               </div>
 
               {/* Code snippet display */}
-              <div className="p-4 font-mono text-xs text-slate-300 space-y-1 bg-black/40">
+              <div className="p-3 sm:p-4 font-mono text-[11px] sm:text-xs text-slate-300 space-y-1 bg-black/50 overflow-x-auto">
                 <div><span className="text-blue-400">const</span> intern = <span className="text-yellow-300">&#123;</span></div>
                 <div className="pl-4">role: <span className="text-emerald-400">"Web Developer"</span>,</div>
-                <div className="pl-4">skills: [<span className="text-cyan-300">"HTML"</span>, <span className="text-cyan-300">"CSS"</span>, <span className="text-cyan-300">"React"</span>, <span className="text-cyan-300">"Node"</span>],</div>
+                <div className="pl-4">skills: [<span className="text-cyan-300">"HTML"</span>, <span className="text-cyan-300">"CSS"</span>, <span className="text-cyan-300">"React"</span>, <span className="text-cyan-300">"Laravel"</span>],</div>
                 <div className="pl-4">status: <span className="text-emerald-400">"Ready for Industry"</span></div>
                 <div><span className="text-yellow-300">&#125;</span>;</div>
               </div>
@@ -247,16 +242,15 @@ export function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
+      <div className="hidden sm:flex absolute bottom-3 left-1/2 -translate-x-1/2 flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
         <button
           onClick={() => handleScroll("#about")}
-          className="text-xs text-slate-400 flex flex-col items-center gap-1 cursor-pointer"
+          className="text-xs text-slate-400 flex flex-col items-center gap-1 cursor-pointer focus:outline-none"
         >
           <span>Scroll to explore</span>
-          <ChevronDown size={16} className="animate-bounce text-cyan-400" />
+          <ChevronDown size={14} className="animate-bounce text-cyan-400" />
         </button>
       </div>
     </section>
   );
 }
-

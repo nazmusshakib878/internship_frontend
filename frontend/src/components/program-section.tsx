@@ -60,38 +60,44 @@ const levels = [
 export function ProgramSection() {
   const handleApply = () => {
     const el = document.querySelector("#contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const navOffset = 70;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <section
       id="programs"
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
-      <div className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+      <div className="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-3xl pointer-events-none"
         style={{ background: "rgba(37,99,235,0.04)" }} />
-      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+      <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-3xl pointer-events-none"
         style={{ background: "rgba(6,182,212,0.04)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full mb-4 sm:mb-6"
             style={{ background: "rgba(37,99,235,0.08)", border: "1px solid rgba(37,99,235,0.2)" }}
           >
-            <span style={{ fontSize: "12px", fontWeight: 600, color: "#2563EB", letterSpacing: "1px" }}>
+            <span className="text-xs font-semibold text-blue-600 tracking-wider">
               INTERNSHIP CURRICULUM
             </span>
           </div>
           <h2
+            className="font-extrabold text-slate-900 leading-tight"
             style={{
-              fontSize: "clamp(28px, 4vw, 44px)",
-              fontWeight: 800,
-              color: "#0A1628",
-              letterSpacing: "-0.8px",
-              lineHeight: 1.15,
+              fontSize: "clamp(24px, 4vw, 42px)",
+              letterSpacing: "-0.5px",
             }}
           >
             Structured Learning{" "}
@@ -106,8 +112,7 @@ export function ProgramSection() {
             </span>
           </h2>
           <p
-            className="max-w-xl mx-auto mt-4"
-            style={{ fontSize: "17px", lineHeight: 1.7, color: "#475569" }}
+            className="max-w-xl mx-auto mt-4 text-slate-600 text-sm sm:text-base leading-relaxed"
           >
             A progressive 6-week curriculum designed to take you from web development fundamentals to
             deploying real-world projects.
@@ -126,31 +131,29 @@ export function ProgramSection() {
         </div>
 
         {/* Levels Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {levels.map((lvl) => (
             <div
               key={lvl.level}
-              className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2 group"
+              className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2 group shadow-sm hover:shadow-lg"
               style={{
                 background: "#FFFFFF",
                 border: "1.5px solid rgba(10,22,40,0.08)",
-                boxShadow: "0 4px 20px rgba(10,22,40,0.06)",
               }}
             >
               {/* Card top banner */}
               <div
-                className="p-6 text-white relative overflow-hidden"
+                className="p-5 sm:p-6 text-white relative overflow-hidden"
                 style={{ background: lvl.gradient }}
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span
-                    className="font-mono font-black"
-                    style={{ fontSize: "36px", opacity: 0.4 }}
+                    className="font-mono font-black text-3xl sm:text-4xl opacity-40"
                   >
                     {lvl.level}
                   </span>
                   <span
-                    className="px-3 py-1 rounded-full text-xs font-semibold"
+                    className="px-2.5 sm:px-3 py-1 rounded-full text-xs font-semibold"
                     style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)" }}
                   >
                     {lvl.duration}
@@ -162,26 +165,26 @@ export function ProgramSection() {
                 >
                   <lvl.icon size={20} className="text-white" />
                 </div>
-                <h3 style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1.3, marginBottom: "4px" }}>
+                <h3 className="text-base sm:text-lg font-bold leading-snug mb-1">
                   {lvl.title}
                 </h3>
-                <p style={{ fontSize: "13px", opacity: 0.8 }}>{lvl.subtitle}</p>
+                <p className="text-xs sm:text-sm opacity-85">{lvl.subtitle}</p>
               </div>
 
               {/* Tasks list */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <div style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", letterSpacing: "1px", marginBottom: "16px" }}>
+                  <div className="text-[11px] font-bold text-slate-400 tracking-wider mb-4 uppercase">
                     CURRICULUM MODULES
                   </div>
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-2.5 sm:space-y-3 mb-6">
                     {lvl.tasks.map((task) => (
                       <li key={task} className="flex items-start gap-2.5">
                         <CheckCircle2
                           size={16}
                           style={{ color: lvl.color, flexShrink: 0, marginTop: "2px" }}
                         />
-                        <span style={{ fontSize: "14px", color: "#334155", lineHeight: 1.5 }}>
+                        <span className="text-xs sm:text-sm text-slate-700 leading-snug">
                           {task}
                         </span>
                       </li>
@@ -191,7 +194,7 @@ export function ProgramSection() {
 
                 <button
                   onClick={handleApply}
-                  className="w-full py-3 rounded-xl font-semibold text-sm transition-all duration-200 group-hover:shadow-md cursor-pointer"
+                  className="w-full py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-200 group-hover:shadow-md cursor-pointer"
                   style={{
                     background: lvl.glow,
                     color: lvl.color,
@@ -208,4 +211,3 @@ export function ProgramSection() {
     </section>
   );
 }
-

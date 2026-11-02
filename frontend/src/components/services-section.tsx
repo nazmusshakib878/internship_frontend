@@ -55,32 +55,38 @@ const services = [
 export function ServicesSection() {
   const handleScroll = () => {
     const el = document.querySelector("#contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const navOffset = 70;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <section id="services" className="py-24 lg:py-32 relative" style={{ background: "#FFFFFF" }}>
+    <section id="services" className="py-16 sm:py-24 lg:py-32 relative" style={{ background: "#FFFFFF" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full mb-4 sm:mb-6"
             style={{
               background: "rgba(37,99,235,0.08)",
               border: "1px solid rgba(37,99,235,0.2)",
             }}
           >
-            <span style={{ fontSize: "12px", fontWeight: 600, color: "#2563EB", letterSpacing: "1px" }}>
+            <span className="text-xs font-semibold text-blue-600 tracking-wider">
               WHAT WE OFFER
             </span>
           </div>
           <h2
+            className="font-extrabold text-slate-900 leading-tight"
             style={{
-              fontSize: "clamp(28px, 4vw, 44px)",
-              fontWeight: 800,
-              color: "#0A1628",
-              letterSpacing: "-0.8px",
-              lineHeight: 1.15,
+              fontSize: "clamp(24px, 4vw, 42px)",
+              letterSpacing: "-0.5px",
             }}
           >
             Expert Services &amp;{" "}
@@ -95,8 +101,7 @@ export function ServicesSection() {
             </span>
           </h2>
           <p
-            className="max-w-xl mx-auto mt-4"
-            style={{ fontSize: "17px", lineHeight: 1.7, color: "#475569" }}
+            className="max-w-xl mx-auto mt-4 text-slate-600 text-sm sm:text-base leading-relaxed"
           >
             Beyond our training program, Primeor Solutions delivers top-tier web design and development
             services to clients across industries.
@@ -104,20 +109,19 @@ export function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((svc) => (
             <div
               key={svc.id}
-              className="rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+              className="rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-2 cursor-pointer shadow-sm hover:shadow-lg"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid rgba(10,22,40,0.08)",
-                boxShadow: "0 2px 16px rgba(10,22,40,0.05)",
               }}
               onClick={handleScroll}
             >
               {/* Image container */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-44 sm:h-48 overflow-hidden">
                 <ImageWithFallback
                   src={svc.image}
                   alt={svc.title}
@@ -130,7 +134,7 @@ export function ServicesSection() {
                   }}
                 />
                 <span
-                  className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold text-white"
+                  className="absolute top-3 right-3 px-2.5 sm:px-3 py-1 rounded-full text-xs font-semibold text-white shadow-sm"
                   style={{ background: svc.color }}
                 >
                   {svc.tag}
@@ -138,16 +142,15 @@ export function ServicesSection() {
               </div>
 
               {/* Body */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <h3
-                    className="mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-between"
-                    style={{ fontSize: "18px", fontWeight: 700, color: "#0A1628" }}
+                    className="mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-between text-base sm:text-lg font-bold text-slate-900"
                   >
                     <span>{svc.title}</span>
                     <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
                   </h3>
-                  <p style={{ fontSize: "14px", lineHeight: 1.6, color: "#64748b" }}>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {svc.description}
                   </p>
                 </div>
@@ -164,4 +167,3 @@ export function ServicesSection() {
     </section>
   );
 }
-

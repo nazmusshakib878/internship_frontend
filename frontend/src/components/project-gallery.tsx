@@ -57,7 +57,7 @@ export function ProjectGallery() {
   return (
     <section
       id="projects"
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
       style={{ background: "#0A1628" }}
     >
       {/* Decorative bg */}
@@ -65,26 +65,26 @@ export function ProjectGallery() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37,99,235,0.08) 1px, transparent 0)`,
-          backgroundSize: "48px 48px",
+          backgroundSize: "32px 32px",
         }}
       />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+      <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 rounded-full blur-3xl pointer-events-none"
         style={{ background: "rgba(6,182,212,0.06)" }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full mb-4 sm:mb-6"
             style={{ background: "rgba(37,99,235,0.15)", border: "1px solid rgba(37,99,235,0.3)" }}
           >
-            <span style={{ fontSize: "12px", fontWeight: 600, color: "#60a5fa", letterSpacing: "1px" }}>
+            <span className="text-xs font-semibold text-blue-400 tracking-wider">
               PROJECT GALLERY
             </span>
           </div>
           <h2
-            className="text-white"
-            style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-0.8px", lineHeight: 1.15 }}
+            className="text-white font-extrabold leading-tight"
+            style={{ fontSize: "clamp(24px, 4vw, 42px)", letterSpacing: "-0.5px" }}
           >
             Our{" "}
             <span
@@ -97,17 +97,17 @@ export function ProjectGallery() {
               Featured Work
             </span>
           </h2>
-          <p className="max-w-xl mx-auto mt-4" style={{ fontSize: "17px", lineHeight: 1.7, color: "#64748b" }}>
+          <p className="max-w-xl mx-auto mt-4 text-slate-400 text-sm sm:text-base leading-relaxed">
             Projects built by our interns as part of their structured learning journey.
           </p>
         </div>
 
         {/* Slideshow */}
-        <div className="relative mb-8">
+        <div className="relative mb-6 sm:mb-8">
           {/* Main slide */}
           <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{ height: "clamp(280px, 50vw, 520px)", boxShadow: "0 30px 80px rgba(0,0,0,0.5)" }}
+            className="relative rounded-2xl overflow-hidden h-[340px] xs:h-[380px] sm:h-[450px] md:h-[500px]"
+            style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5)" }}
           >
             <ImageWithFallback
               src={projects[current].image}
@@ -116,33 +116,33 @@ export function ProjectGallery() {
             />
             <div
               className="absolute inset-0"
-              style={{ background: "linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.1) 60%)" }}
+              style={{ background: "linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.4) 50%, rgba(10,22,40,0.1) 100%)" }}
             />
 
             {/* Slide info */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-              <div className="flex items-end justify-between">
-                <div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+                <div className="max-w-xl">
                   <span
-                    className="inline-block px-3 py-1 rounded-full mb-3"
-                    style={{ background: "rgba(37,99,235,0.7)", fontSize: "11px", fontWeight: 600, color: "#93c5fd", backdropFilter: "blur(8px)" }}
+                    className="inline-block px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3 text-[11px] font-semibold text-blue-200"
+                    style={{ background: "rgba(37,99,235,0.7)", backdropFilter: "blur(8px)" }}
                   >
                     {projects[current].category}
                   </span>
-                  <h3 className="text-white mb-2" style={{ fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 700 }}>
+                  <h3 className="text-white text-lg sm:text-2xl md:text-3xl font-bold mb-1.5 sm:mb-2">
                     {projects[current].title}
                   </h3>
-                  <p style={{ fontSize: "14px", color: "#94a3b8", maxWidth: "560px" }}>
+                  <p className="text-slate-300 text-xs sm:text-sm line-clamp-2 sm:line-clamp-none">
                     {projects[current].description}
                   </p>
                 </div>
                 <button
                   onClick={() => setLightbox(current)}
-                  className="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-xl text-white transition-all hover:bg-white/20 cursor-pointer"
-                  style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", fontSize: "13px", fontWeight: 600, backdropFilter: "blur(8px)" }}
+                  className="self-start sm:self-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-white transition-all hover:bg-white/20 cursor-pointer text-xs sm:text-sm font-semibold"
+                  style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)" }}
                 >
-                  <ZoomIn size={16} />
-                  Expand
+                  <ZoomIn size={15} />
+                  <span>Expand</span>
                 </button>
               </div>
             </div>
@@ -150,65 +150,68 @@ export function ProjectGallery() {
             {/* Nav arrows */}
             <button
               onClick={prev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all hover:bg-white/20 cursor-pointer"
-              style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)" }}
+              className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 rounded-full flex items-center justify-center text-white transition-all hover:bg-white/25 active:scale-95 cursor-pointer"
+              style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+              aria-label="Previous project"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} className="sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={next}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all hover:bg-white/20 cursor-pointer"
-              style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(8px)" }}
+              className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 rounded-full flex items-center justify-center text-white transition-all hover:bg-white/25 active:scale-95 cursor-pointer"
+              style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+              aria-label="Next project"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} className="sm:w-5 sm:h-5" />
             </button>
           </div>
 
           {/* Controls bar */}
-          <div className="flex items-center justify-between mt-4">
-            <div className="flex gap-2">
+          <div className="flex items-center justify-between mt-3 sm:mt-4 px-1">
+            <div className="flex gap-1.5 sm:gap-2">
               {projects.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
                   className="transition-all duration-300 cursor-pointer"
                   style={{
-                    width: i === current ? "28px" : "8px",
-                    height: "8px",
+                    width: i === current ? "24px" : "7px",
+                    height: "7px",
                     borderRadius: "999px",
-                    background: i === current ? "#2563EB" : "rgba(255,255,255,0.2)",
+                    background: i === current ? "#2563EB" : "rgba(255,255,255,0.25)",
                   }}
+                  aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <span style={{ fontSize: "13px", color: "#475569" }}>
+              <span className="text-xs sm:text-sm text-slate-400 font-medium">
                 {current + 1} / {projects.length}
               </span>
               <button
                 onClick={() => setPlaying(!playing)}
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:bg-white/10 cursor-pointer"
-                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                className="w-7 sm:w-8 h-7 sm:h-8 rounded-full flex items-center justify-center transition-all hover:bg-white/10 cursor-pointer border border-white/20"
+                aria-label={playing ? "Pause autoplay" : "Play autoplay"}
               >
-                {playing ? <Pause size={14} className="text-slate-400" /> : <Play size={14} className="text-slate-400" />}
+                {playing ? <Pause size={12} className="text-slate-300" /> : <Play size={12} className="text-slate-300" />}
               </button>
             </div>
           </div>
         </div>
 
         {/* Thumbnails */}
-        <div className="grid grid-cols-5 gap-3">
+        <div className="flex sm:grid sm:grid-cols-5 gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0">
           {projects.map((p, i) => (
             <button
               key={p.id}
               onClick={() => setCurrent(i)}
-              className="relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 cursor-pointer"
+              className="relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 cursor-pointer flex-shrink-0 w-20 sm:w-full h-14 sm:h-20"
               style={{
-                height: "70px",
                 outline: i === current ? "2px solid #2563EB" : "2px solid transparent",
                 outlineOffset: "2px",
-                opacity: i === current ? 1 : 0.6,
+                opacity: i === current ? 1 : 0.55,
               }}
+              aria-label={`View ${p.title}`}
             >
               <ImageWithFallback src={p.image} alt={p.title} className="w-full h-full object-cover" />
             </button>
@@ -219,7 +222,7 @@ export function ProjectGallery() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 cursor-pointer"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 cursor-pointer"
           style={{ background: "rgba(0,0,0,0.92)" }}
           onClick={() => setLightbox(null)}
         >
@@ -236,17 +239,18 @@ export function ProjectGallery() {
             />
             <button
               onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center text-white cursor-pointer"
-              style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white cursor-pointer"
+              style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}
+              aria-label="Close fullscreen"
             >
               <X size={18} />
             </button>
-            <div className="absolute bottom-0 left-0 right-0 p-5"
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5"
               style={{ background: "linear-gradient(to top, rgba(10,22,40,0.95), transparent)" }}>
-              <h3 className="text-white" style={{ fontSize: "20px", fontWeight: 700 }}>
+              <h3 className="text-white text-base sm:text-xl font-bold">
                 {projects[lightbox].title}
               </h3>
-              <p style={{ fontSize: "14px", color: "#94a3b8", marginTop: "4px" }}>
+              <p className="text-slate-300 text-xs sm:text-sm mt-1">
                 {projects[lightbox].description}
               </p>
             </div>
@@ -256,4 +260,3 @@ export function ProjectGallery() {
     </section>
   );
 }
-

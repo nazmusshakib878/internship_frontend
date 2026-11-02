@@ -59,7 +59,15 @@ export function ContactFooter() {
 
   const handleNav = (href: string) => {
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const navOffset = 70;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handleApplySubmit = async (e: React.FormEvent) => {
@@ -85,7 +93,6 @@ export function ContactFooter() {
       setReason("");
     } catch (err: any) {
       console.warn("Backend error, using local fallback:", err.message);
-      // Fallback
       setSubmitted(true);
       setFullName("");
       setEmail("");
@@ -110,25 +117,25 @@ export function ContactFooter() {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37,99,235,0.07) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
+            backgroundSize: "32px 32px",
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-28 relative">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 relative">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left: Heading */}
             <div>
               <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+                className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full mb-4 sm:mb-6"
                 style={{ background: "rgba(37,99,235,0.15)", border: "1px solid rgba(37,99,235,0.3)" }}
               >
-                <span style={{ fontSize: "12px", fontWeight: 600, color: "#60a5fa", letterSpacing: "1px" }}>
+                <span className="text-xs font-semibold text-blue-400 tracking-wider">
                   GET IN TOUCH
                 </span>
               </div>
               <h2
-                className="text-white mb-4"
-                style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-0.8px", lineHeight: 1.15 }}
+                className="text-white mb-4 font-extrabold leading-tight tracking-tight"
+                style={{ fontSize: "clamp(24px, 4vw, 42px)", letterSpacing: "-0.5px" }}
               >
                 Ready to Start Your
                 <br />
@@ -142,31 +149,23 @@ export function ContactFooter() {
                   Internship Journey?
                 </span>
               </h2>
-              <p style={{ fontSize: "17px", color: "#64748b", lineHeight: 1.7, marginBottom: "32px", maxWidth: "460px" }}>
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg">
                 Reach out to Primeor Solutions to apply for our internship program or inquire about our
                 web development services. We're excited to hear from you.
               </p>
 
               {/* Contact cards */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {contactInfo.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
                     target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-3 p-4 rounded-xl transition-all duration-300 hover:-translate-y-1"
+                    className="group flex items-start gap-3 p-3.5 sm:p-4 rounded-xl transition-all duration-300 hover:-translate-y-1"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       border: "1px solid rgba(255,255,255,0.08)",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
-                      (e.currentTarget as HTMLElement).style.borderColor = item.color + "50";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
                     }}
                   >
                     <div
@@ -175,17 +174,16 @@ export function ContactFooter() {
                     >
                       <item.icon size={16} style={{ color: item.color }} />
                     </div>
-                    <div className="min-w-0">
-                      <p style={{ fontSize: "11px", color: "#475569", fontWeight: 600, letterSpacing: "0.5px", marginBottom: "2px" }}>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[11px] text-slate-500 font-semibold tracking-wider mb-0.5 uppercase">
                         {item.label}
                       </p>
-                      <p className="truncate" style={{ fontSize: "13px", color: "#cbd5e1", fontWeight: 500 }}>
+                      <p className="truncate text-xs sm:text-sm text-slate-200 font-medium">
                         {item.value}
                       </p>
                     </div>
                     {item.href.startsWith("http") && (
-                      <ArrowUpRight size={14} style={{ color: "#475569", flexShrink: 0, marginLeft: "auto" }}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowUpRight size={14} className="text-slate-500 flex-shrink-0 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                     )}
                   </a>
                 ))}
@@ -194,34 +192,34 @@ export function ContactFooter() {
 
             {/* Right: CTA card */}
             <div
-              className="rounded-2xl p-8 lg:p-10"
+              className="rounded-2xl p-5 sm:p-8 lg:p-10 shadow-xl"
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(37,99,235,0.2)",
                 backdropFilter: "blur(16px)",
               }}
             >
-              <h3 className="text-white mb-2" style={{ fontSize: "22px", fontWeight: 700 }}>
+              <h3 className="text-white mb-2 text-xl sm:text-2xl font-bold">
                 Apply for Internship
               </h3>
-              <p style={{ fontSize: "14px", color: "#64748b", marginBottom: "24px", lineHeight: 1.6 }}>
+              <p className="text-slate-400 text-xs sm:text-sm mb-6 leading-relaxed">
                 Join our next batch and kickstart your web development career with real-world experience
                 and expert mentorship.
               </p>
 
               {submitted ? (
                 <div
-                  className="p-6 rounded-xl text-center flex flex-col items-center justify-center"
+                  className="p-5 sm:p-6 rounded-xl text-center flex flex-col items-center justify-center"
                   style={{ background: "rgba(16,185,129,0.1)", border: "1px dashed rgba(16,185,129,0.4)" }}
                 >
-                  <CheckCircle2 size={44} className="text-emerald-400 mb-3" />
-                  <h4 className="text-white text-lg font-bold">Application Received!</h4>
-                  <p className="text-slate-300 text-sm mt-2 max-w-sm">
+                  <CheckCircle2 size={40} className="text-emerald-400 mb-2.5" />
+                  <h4 className="text-white text-base sm:text-lg font-bold">Application Received!</h4>
+                  <p className="text-slate-300 text-xs sm:text-sm mt-1.5 max-w-sm">
                     Thank you for applying to the Primeor Solutions internship track. We have logged your details in our system and will contact you via email.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-5 px-6 py-2.5 rounded-xl text-white text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 transition-all cursor-pointer"
+                    className="mt-4 px-5 py-2.5 rounded-xl text-white text-xs sm:text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 transition-all cursor-pointer"
                   >
                     Submit Another Application
                   </button>
@@ -229,14 +227,14 @@ export function ContactFooter() {
               ) : (
                 <form onSubmit={handleApplySubmit} className="space-y-4">
                   {error && (
-                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm flex items-center gap-2">
-                      <AlertCircle size={16} />
+                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs sm:text-sm flex items-center gap-2">
+                      <AlertCircle size={16} className="flex-shrink-0" />
                       <span>{error}</span>
                     </div>
                   )}
 
                   <div>
-                    <label style={{ fontSize: "13px", fontWeight: 600, color: "#94a3b8", display: "block", marginBottom: "6px" }}>
+                    <label className="text-xs sm:text-sm font-semibold text-slate-300 block mb-1.5">
                       Full Name
                     </label>
                     <input
@@ -245,19 +243,11 @@ export function ContactFooter() {
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Your full name"
                       required
-                      className="w-full px-4 py-3 rounded-xl outline-none"
-                      style={{
-                        background: "rgba(255,255,255,0.05)",
-                        border: "1.5px solid rgba(255,255,255,0.1)",
-                        color: "#e2e8f0",
-                        fontSize: "14px",
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = "#2563EB")}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl outline-none text-sm text-slate-200 bg-white/5 border border-white/10 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <label style={{ fontSize: "13px", fontWeight: 600, color: "#94a3b8", display: "block", marginBottom: "6px" }}>
+                    <label className="text-xs sm:text-sm font-semibold text-slate-300 block mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -266,19 +256,11 @@ export function ContactFooter() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@email.com"
                       required
-                      className="w-full px-4 py-3 rounded-xl outline-none"
-                      style={{
-                        background: "rgba(255,255,255,0.05)",
-                        border: "1.5px solid rgba(255,255,255,0.1)",
-                        color: "#e2e8f0",
-                        fontSize: "14px",
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = "#2563EB")}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl outline-none text-sm text-slate-200 bg-white/5 border border-white/10 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <label style={{ fontSize: "13px", fontWeight: 600, color: "#94a3b8", display: "block", marginBottom: "6px" }}>
+                    <label className="text-xs sm:text-sm font-semibold text-slate-300 block mb-1.5">
                       Why do you want to join?
                     </label>
                     <textarea
@@ -287,25 +269,15 @@ export function ContactFooter() {
                       onChange={(e) => setReason(e.target.value)}
                       placeholder="Tell us about your learning goals and background..."
                       required
-                      className="w-full px-4 py-3 rounded-xl outline-none resize-none"
-                      style={{
-                        background: "rgba(255,255,255,0.05)",
-                        border: "1.5px solid rgba(255,255,255,0.1)",
-                        color: "#e2e8f0",
-                        fontSize: "14px",
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = "#2563EB")}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl outline-none resize-none text-sm text-slate-200 bg-white/5 border border-white/10 focus:border-blue-500"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 rounded-xl text-white transition-all hover:opacity-90 hover:shadow-lg disabled:opacity-70 cursor-pointer"
+                    className="w-full py-3.5 rounded-xl text-white transition-all hover:opacity-90 hover:shadow-lg disabled:opacity-70 cursor-pointer text-sm sm:text-base font-bold shadow-lg"
                     style={{
                       background: "linear-gradient(135deg, #2563EB, #06B6D4)",
-                      fontSize: "15px",
-                      fontWeight: 700,
                       boxShadow: "0 8px 24px rgba(37,99,235,0.35)",
                     }}
                   >
@@ -320,25 +292,25 @@ export function ContactFooter() {
 
       {/* Footer bottom */}
       <div style={{ background: "#060d1b", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-3 gap-10 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-8 sm:mb-12">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-2 mb-3 sm:mb-4">
                 <div
-                  className="flex items-center justify-center w-9 h-9 rounded-xl"
+                  className="flex items-center justify-center w-8 sm:w-9 h-8 sm:h-9 rounded-xl"
                   style={{ background: "linear-gradient(135deg, #2563EB, #06B6D4)" }}
                 >
                   <Code2 size={18} className="text-white" />
                 </div>
                 <div className="flex flex-col leading-none">
-                  <span className="text-white font-bold text-lg tracking-tight">Primeor</span>
-                  <span style={{ fontSize: "10px", fontWeight: 500, color: "#06B6D4", letterSpacing: "1.5px" }}>
+                  <span className="text-white font-bold text-base sm:text-lg tracking-tight">Primeor</span>
+                  <span style={{ fontSize: "9px", fontWeight: 600, color: "#06B6D4", letterSpacing: "1.5px" }}>
                     SOLUTIONS
                   </span>
                 </div>
               </div>
-              <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.7, maxWidth: "280px" }}>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
                 Empowering the next generation of web developers with practical skills, real-world
                 experience, and dedicated mentorship.
               </p>
@@ -346,7 +318,7 @@ export function ContactFooter() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-white font-semibold text-sm mb-4 tracking-wide uppercase">
+              <h4 className="text-white font-semibold text-xs sm:text-sm mb-3 sm:mb-4 tracking-wider uppercase">
                 Quick Navigation
               </h4>
               <ul className="space-y-2">
@@ -354,7 +326,7 @@ export function ContactFooter() {
                   <li key={label}>
                     <button
                       onClick={() => handleNav(href)}
-                      className="text-slate-400 hover:text-cyan-400 text-sm transition-colors cursor-pointer"
+                      className="text-slate-400 hover:text-cyan-400 text-xs sm:text-sm transition-colors cursor-pointer"
                     >
                       {label}
                     </button>
@@ -365,34 +337,35 @@ export function ContactFooter() {
 
             {/* Social / Connect */}
             <div>
-              <h4 className="text-white font-semibold text-sm mb-4 tracking-wide uppercase">
+              <h4 className="text-white font-semibold text-xs sm:text-sm mb-3 sm:mb-4 tracking-wider uppercase">
                 Connect With Us
               </h4>
-              <div className="flex gap-3 mb-6">
+              <div className="flex gap-2.5 sm:gap-3 mb-4">
                 {socialLinks.map((s) => (
                   <a
                     key={s.label}
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                    className="w-9 sm:w-10 h-9 sm:h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all bg-white/5 border border-white/10 hover:border-cyan-500/50"
+                    aria-label={s.label}
                   >
                     <s.icon size={16} />
                   </a>
                 ))}
               </div>
-              <p style={{ fontSize: "12px", color: "#475569" }}>
-                Office: Bhopal, Madhya Pradesh, India
+              <p className="text-xs text-slate-400 flex items-center gap-1.5">
+                <MapPin size={14} className="text-pink-500 flex-shrink-0" />
+                <span>Bhopal, Madhya Pradesh, India</span>
               </p>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p style={{ fontSize: "13px", color: "#475569" }}>
+          <div className="pt-6 sm:pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <p className="text-xs text-slate-500">
               &copy; {new Date().getFullYear()} Primeor Solutions. All rights reserved.
             </p>
-            <p style={{ fontSize: "13px", color: "#475569" }}>
+            <p className="text-xs text-slate-500">
               Designed &amp; Engineered for Excellence.
             </p>
           </div>
@@ -401,4 +374,3 @@ export function ContactFooter() {
     </footer>
   );
 }
-
