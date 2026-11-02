@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development",
+    "description": "Full-stack web solutions built with modern technologies, clean code and scalable architecture.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMHByb2dyYW1taW5nJTIwbGFwdG9wfGVufDF8fHx8MTc5MzYyNzM3NHww&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Core Service",
+    "color": "#2563EB"
+  },
+  {
+    "id": 2,
+    "title": "Frontend Development",
+    "description": "Pixel-perfect, performant frontend interfaces crafted with React, Tailwind and modern CSS.",
+    "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcm9udGVuZCUyMFVJJTIwZGVzaWduJTIwY29kZSUyMHNjcmVlbnxlbnwxfHx8fDE3OTM2MjczNzR8MA&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Specialty",
+    "color": "#06B6D4"
+  },
+  {
+    "id": 3,
+    "title": "Responsive Design",
+    "description": "Seamless experiences across all devices — mobile, tablet and desktop with fluid, adaptive layouts.",
+    "image": "https://images.unsplash.com/photo-1426024084828-5da21e13f5dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNwb25zaXZlJTIwZGVzaWduJTIwbW9iaWxlJTIwdGFibGV0JTIwZGV2aWNlc3xlbnwxfHx8fDE3OTM2MjczNzR8MA&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Essential",
+    "color": "#8B5CF6"
+  },
+  {
+    "id": 4,
+    "title": "UI/UX Development",
+    "description": "User-centered design principles applied to create intuitive, beautiful and effective interfaces.",
+    "image": "https://images.unsplash.com/photo-1576153192396-180ecef2a715?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxVSSUyMFVYJTIwZGVzaWduJTIwd2lyZWZyYW1lJTIwcHJvdG90eXBlfGVufDF8fHx8MTc5MzYyNzM3NXww&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Design",
+    "color": "#EC4899"
+  },
+  {
+    "id": 5,
+    "title": "JavaScript Development",
+    "description": "Dynamic, interactive web experiences powered by modern JavaScript, ES6+ features and frameworks.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nJTIwZGFzaGJvYXJkJTIwYW5hbHl0aWNzfGVufDF8fHx8MTc5MzYyNzM4MHww&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Core Tech",
+    "color": "#F59E0B"
+  },
+  {
+    "id": 6,
+    "title": "Website Optimization",
+    "description": "Speed, SEO and performance audits to ensure your website loads fast and ranks high.",
+    "image": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwc3BlZWQlMjBwZXJmb3JtYW5jZSUyMG9wdGltaXphdGlvbnxlbnwxfHx8fDE3OTM2MjczNzZ8MA&ixlib=rb-4.1.0&q=80&w=400",
+    "tag": "Performance",
+    "color": "#10B981"
+  }
+]
+

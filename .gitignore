@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+*/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Environment files
+.env
+.env.local
+
+# Build output
+dist/
+build/
+*/dist/
+
+# Temporary and cache
+.DS_Store
+Thumbs.db
+*.fig
+*.bin
+decoded_nodes.json
+extracted_figma_code/
+*.tmp
+

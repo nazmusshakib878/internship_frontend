@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "level": "01",
+    "title": "HTML, CSS & JavaScript",
+    "subtitle": "Level 1 — Foundations",
+    "color": "#2563EB",
+    "glow": "rgba(37,99,235,0.15)",
+    "gradient": "linear-gradient(135deg, #1e3a8a, #1d4ed8)",
+    "tasks": [
+      "Build semantic HTML document structures",
+      "Style elements with modern CSS & Flexbox/Grid",
+      "Implement JavaScript interactivity & DOM manipulation",
+      "Create form validations and event handlers",
+      "Build a complete static webpage from scratch"
+    ],
+    "duration": "2 Weeks",
+    "badge": "Foundation"
+  },
+  {
+    "id": 2,
+    "level": "02",
+    "title": "Bootstrap / Tailwind & Responsive Design",
+    "subtitle": "Level 2 — Frameworks",
+    "color": "#06B6D4",
+    "glow": "rgba(6,182,212,0.15)",
+    "gradient": "linear-gradient(135deg, #164e63, #0e7490)",
+    "tasks": [
+      "Master Tailwind CSS utility-first approach",
+      "Build mobile-first responsive layouts",
+      "Create grid systems and breakpoint-based designs",
+      "Implement Bootstrap components and utilities",
+      "Develop a fully responsive multi-section website"
+    ],
+    "duration": "2 Weeks",
+    "badge": "Intermediate"
+  },
+  {
+    "id": 3,
+    "level": "03",
+    "title": "Image Gallery & Landing Page Development",
+    "subtitle": "Level 3 — Capstone",
+    "color": "#8B5CF6",
+    "glow": "rgba(139,92,246,0.15)",
+    "gradient": "linear-gradient(135deg, #3b0764, #6d28d9)",
+    "tasks": [
+      "Build a dynamic image gallery with lightbox",
+      "Implement slideshow with auto-play and navigation",
+      "Design and develop a complete landing page",
+      "Add smooth CSS animations and transitions",
+      "Deploy and present your final capstone project"
+    ],
+    "duration": "2 Weeks",
+    "badge": "Advanced"
+  }
+]
+
