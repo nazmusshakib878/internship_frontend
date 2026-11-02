@@ -1,101 +1,92 @@
-# Primeor Solutions - Full Stack Portal (Internship & Services)
+# Primeor Solutions - Full Stack Portal (Laravel + React)
 
-This project contains the complete code implementation of the Figma design, neatly separated into two distinct folders: **`frontend`** and **`backend`**.
+A full-stack web application implementing the Figma design for the Primeor Solutions portal.
+- **Frontend**: React + TypeScript + Vite + Tailwind CSS (Deployed on **Vercel**)
+- **Backend**: Laravel 11 REST API (Deployed on **Render**)
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Architecture
 
 ```
 internship/
-├── frontend/                     # React + Vite + TypeScript + Tailwind CSS Frontend
-│   ├── public/
-│   │   └── favicon.svg           # Custom favicon
+├── frontend/                     # React + Vite + TypeScript (Target: Vercel)
 │   ├── src/
-│   │   ├── components/           # Component library from Figma design
-│   │   │   ├── navbar.tsx
-│   │   │   ├── hero-section.tsx
-│   │   │   ├── about-section.tsx
-│   │   │   ├── program-section.tsx
-│   │   │   ├── services-section.tsx
-│   │   │   ├── interactive-section.tsx
-│   │   │   ├── project-gallery.tsx
-│   │   │   ├── contact-footer.tsx
-│   │   │   └── image-with-fallback.tsx
-│   │   ├── services/
-│   │   │   └── api.ts            # Client API connecting to Express backend
-│   │   ├── App.tsx               # Root component aligning all sections
-│   │   ├── main.tsx              # React mounting entrypoint
-│   │   └── index.css             # Tailwind base & custom scrollbar styles
-│   ├── index.html
+│   │   ├── components/           # UI components matching Figma design
+│   │   ├── services/api.ts       # Connected to Laravel REST API
+│   │   ├── App.tsx
+│   │   └── main.tsx
 │   ├── package.json
 │   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   ├── tsconfig.json
 │   ├── vite.config.ts
 │   └── README.md
 │
-├── backend/                      # Node.js + Express REST API Backend
-│   ├── src/
-│   │   ├── controllers/
-│   │   │   ├── applicationController.js  # Manages internship applications
-│   │   │   ├── contactController.js      # Manages messages & inquiries
-│   │   │   └── contentController.js      # Serves dynamic program & project data
-│   │   ├── routes/
-│   │   │   ├── applicationRoutes.js
-│   │   │   ├── contactRoutes.js
-│   │   │   └── contentRoutes.js
-│   │   ├── data/                 # Data catalogs
-│   │   │   ├── programs.json     # 3-level internship curriculum
-│   │   │   ├── services.json     # Services list & metadata
-│   │   │   └── projects.json     # Gallery showcase items
-│   │   ├── middleware/
-│   │   │   └── errorHandler.js   # Global error handling middleware
-│   │   ├── storage/
-│   │   │   ├── applications.json # Persisted internship applications
-│   │   │   └── contacts.json     # Persisted contact messages
-│   │   └── server.js             # Express app entrypoint with CORS & routes
-│   ├── package.json
-│   ├── .env.example
-│   ├── .env
+├── backend/                      # Laravel 11 REST API (Target: Render)
+│   ├── app/
+│   │   ├── Http/Controllers/Api/ # ApplicationController, ContactController, ContentController
+│   │   └── Models/               # Application & Contact Eloquent Models
+│   ├── database/
+│   │   ├── migrations/           # Applications & Contacts schema
+│   │   └── data/                 # JSON catalogs (programs, services, projects)
+│   ├── routes/
+│   │   └── api.php               # API Endpoints
+│   ├── config/cors.php           # Configured to allow Vercel origins
+│   ├── Dockerfile                # Production Docker container for Render
+│   ├── render.yaml               # Render Blueprint specification
+│   ├── render-build.sh           # Native build script for Render
 │   └── README.md
 │
-└── README.md                     # Root project documentation
+└── README.md
 ```
 
 ---
 
-## 🚀 How to Run the Project
+## 🚀 Deployment Instructions
 
-### 1. Start the Backend
-Open a terminal in the root directory:
+### 1. Deploy Backend on Render
+1. Go to [Render.com](https://render.com) and click **New +** &rarr; **Web Service**.
+2. Connect your GitHub repository (`internship_frontend`).
+3. Set:
+   - **Root Directory**: `backend`
+   - **Runtime**: `Docker`
+4. In **Environment Variables**, add:
+   - `APP_NAME`: `Primeor Solutions API`
+   - `APP_ENV`: `production`
+   - `APP_DEBUG`: `false`
+   - `APP_KEY`: *(Generate via `php artisan key:generate --show` or Render will generate it)*
+   - `DB_CONNECTION`: `sqlite`
+   - `LOG_CHANNEL`: `stderr`
+5. Click **Create Web Service**. Note your Render service URL (e.g., `https://primeor-backend.onrender.com`).
+
+---
+
+### 2. Deploy Frontend on Vercel
+1. Go to [Vercel.com](https://vercel.com) and click **Add New...** &rarr; **Project**.
+2. Import your GitHub repository (`internship_frontend`).
+3. Under **Root Directory**, click `Edit` and select **`frontend`**.
+4. In **Environment Variables**, add:
+   - `VITE_API_URL`: `https://your-render-backend-url.onrender.com/api`
+5. Click **Deploy**!
+
+---
+
+## 💻 Local Development
+
+### Run Backend (Laravel)
 ```bash
 cd backend
-npm install
-npm run dev
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
 ```
-The backend will start at **`http://localhost:5000`**.
+Backend runs at `http://127.0.0.1:8000`.
 
-### 2. Start the Frontend
-Open a second terminal:
+### Run Frontend (React + Vite)
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The frontend will start at **`http://localhost:5173`**.
-
----
-
-## 🎯 Key Highlights
-1. **Pixel-Perfect Alignment with Figma**:
-   - Matching color palettes (Electric Blue `#2563EB`, Cyan `#06B6D4`, Deep Navy `#0A1628`).
-   - Responsive layouts across mobile, tablet, and desktop screens.
-   - Smooth anchor navigation across all sections (`#home`, `#about`, `#programs`, `#services`, `#interactive`, `#projects`, `#contact`).
-
-2. **Full-Stack Connectivity**:
-   - **Apply for Internship Form**: Validated and connected to `POST /api/applications`. Data is persisted on the backend.
-   - **Interactive Contact Demo**: Validated and connected to `POST /api/contact`.
-   - **Real-Time Interactive Elements**: Color changer, Greeting generator, and Calculator in the interactive section.
-   - **Auto-Sliding Project Gallery**: With full-screen lightbox modal and pause/play controls.
-
+Frontend runs at `http://localhost:5173`.
